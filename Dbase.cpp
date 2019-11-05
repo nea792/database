@@ -31,8 +31,8 @@ void SelectClass(string);
 void AddClass(string);//
 void RemoveClass(string);
 void AddStudent(string, Date, unsigned long int, float);
-void RemoveStudent(string);
-void Search(string); //search by id
+void RemoveStudent(unsigned long long int);
+void Search(unsigned long long int); //search by id
 void Search(string, string); //search by fullname
 void ShowClass(string);//show selected class
 void ShowAll();//show information of classes
@@ -103,7 +103,7 @@ void start()
                 
           else if(command.at(1)=="remove"&& command.at(2)=="student" )
           {  
-             RemoveStudent(command.at(3));
+             RemoveStudent(stoull(command.at(3)));
  
           }
           else
@@ -146,7 +146,7 @@ void start()
                    
              if(command.at(2).size()==10)  
              {
-              Search(command.at(2));
+              Search(stoull(command.at(2)));
              }
              if(command.at(2).size()==12)
              {  
@@ -265,7 +265,7 @@ void RemoveClass(string removingclass)
 }
 //------------------------------------------------------------------------------------------------------
 
-void RemoveStudent(string username)
+void RemoveStudent(unsigned long long int username)
 {
     for(auto &i:Database)
        if(i.ClassName==choose)
@@ -273,7 +273,7 @@ void RemoveStudent(string username)
           int count=0;
           for(auto j:i.Data)
           {
-             if(to_string(j.ID)==username)
+             if(j.ID==username)
              i.Data.erase(i.Data.begin()+count);
              count++;
           }
@@ -350,13 +350,13 @@ void AddStudent(string fullname, Date birth, unsigned long int idnew, float grd)
 
 }
 //-------------------------------------------------------------------------------------------------
-void Search(string searchingId)
+void Search(unsigned long long int searchingId)
 {
     for(auto i:Database)
        if(i.ClassName==choose)
        {
           for(auto j:i.Data)
-             if(to_string(j.ID)==searchingId)
+             if(j.ID==searchingId)
              { 
                 cout<<j.Firstname<<" "<<j.Lastname<<"  ";
                 cout<<j.Birthday.Year<<"\\";
