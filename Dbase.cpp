@@ -36,6 +36,7 @@ void Search(unsigned long long int); //search by id
 void Search(string, string); //search by fullname
 void ShowClass(string);//show selected class
 void ShowAll();//show information of classes
+void showselect();//show selected class
 void SortByName(); //sort by name
 void SortByID(); //sort by id
 void Save();//save in files
@@ -133,6 +134,10 @@ void start()
              cin>>newdate.Day;
              AddStudent(nameNewStd,newdate,idnew, mark);
           
+          }
+          else if(command.at(1)=="show" && command.at(2)=="select")
+          {
+             showselect();
           }
        
           else if(command.at(1)=="select"&& command.at(2)=="none")
@@ -283,8 +288,25 @@ void RemoveStudent(unsigned long long int username)
 
 }
 //----------------------------------------------------------------------------------------------------------
+void showselect()
+{
+    for(auto &i:Database)
+      if(i.ClassName==choose)
+      {
+       for(auto j:i.Data)
+       {
+          cout<<j.Firstname<<" "<<j.Lastname<<"  ";
+          cout<<j.Birthday.Year<<"\\";
+          cout<<setw(2)<<j.Birthday.Month<<setfill('0')<<"\\";
+          cout<<setw(2)<<j.Birthday.Day<<"  ";
+          cout<<setfill('0')<<setw(5)<<j.Grade<<"  ";
+          cout<<j.ID<<endl;
+       }
+       break;
+    }
 
-
+}
+//------------------------------------------------------------------------------------------------------------
 void ShowAll()
 {
     for(auto k:Database)
@@ -492,22 +514,23 @@ void Save()
 //-------------------------------------------------------------------------------------------------------------
 void BasuHelp()
 {
-   cout<<"basu add class (namefile)"<<"\t"<<"--------->"<<"\t"<<"add a class from file"<<endl;
-   cout<<"basu remove class (class name)"<<"\t"<<"--------->"<<"\t"<<"remove a student from data"<<endl;
-   cout<<"basu add student "<<"\t\t"<<"--------->"<<"\t"<<"add a student to selected class"<<endl;
-   cout<<"basu remove student <ID>"<<"\t"<<"--------->"<<"\t"<<"remove a student from selected class by id"<<endl;
-   cout<<"basu select class <>Class Name"<<"\t"<<"--------->"<<"\t"<<" to selected  a class"<<endl;
-   cout<<"basu select none"<<"\t\t"<<"--------->"<<"\t"<<"none select class"<<endl;
-   cout<<"basu search <ID>"<<"\t\t"<<"--------->"<<"\t"<<"Search student by ID"<<endl;
-   cout<<"basu search <FullName>"<<"\t\t"<<"--------->"<<"\t"<<"search student by fullname"<<endl;
-   cout<<"basu show "<<"\t\t\t"<<"--------->"<<"\t"<<"show all students"<<endl;
-   cout<<"basu show <ClassName>"<<"\t\t"<<"--------->"<<"\t"<<"show students of class"<<endl;
-   cout<<"basu sort id"<<"\t\t\t"<<"--------->"<<"\t"<<"sort students of selected class by id"<<endl;
-   cout<<"basu sort name"<<"\t\t\t"<<"--------->"<<"\t"<<"sort students of selected class by name"<<endl;
-   cout<<"basu save"<<"\t\t\t"<<"--------->"<<"\t"<<"save classess in files"<<endl;
-   cout<<"basu clear"<<"\t\t\t"<<"--------->"<<"\t"<<"clear system"<<endl;
-   cout<<"basu rank"<<"\t\t\t"<<"--------->"<<"\t"<<"rank of students of selected class(A\\B\\C\\D\\E\\) "<<endl;
-   cout<<"exit"<<"\t\t\t\t"<<"--------->"<<"\t"<<"for exit"<<endl;
+   cout<<"basu add class (namefile)"<<"\t"<<"--------->"<<"\t"<<"add a class from file"<<"\n\n";
+   cout<<"basu remove class (class name)"<<"\t"<<"--------->"<<"\t"<<"remove a student from data"<<"\n\n";
+   cout<<"basu add student "<<"\t\t"<<"--------->"<<"\t"<<"add a student to selected class"<<"\n\n";
+   cout<<"basu remove student <ID>"<<"\t"<<"--------->"<<"\t"<<"remove a student from selected class by id"<<"\n\n";
+   cout<<"basu select class <>Class Name"<<"\t"<<"--------->"<<"\t"<<" to selected  a class"<<"\n\n";
+   cout<<"basu select none"<<"\t\t"<<"--------->"<<"\t"<<"none select class"<<"\n\n";
+   cout<<"basu search <ID>"<<"\t\t"<<"--------->"<<"\t"<<"Search student by ID"<<"\n\n";
+   cout<<"basu search <FullName>"<<"\t\t"<<"--------->"<<"\t"<<"search student by fullname"<<"\n\n";
+   cout<<"basu show "<<"\t\t\t"<<"--------->"<<"\t"<<"show all students"<<"\n\n";
+   cout<<"basu show <ClassName>"<<"\t\t"<<"--------->"<<"\t"<<"show students of class"<<"\n\n";
+   cout<<"basu sort id"<<"\t\t\t"<<"--------->"<<"\t"<<"sort students of selected class by id"<<"\n\n";
+   cout<<"basu sort name"<<"\t\t\t"<<"--------->"<<"\t"<<"sort students of selected class by name"<<"\n\n";
+   cout<<"basu show select"<<"\t\t"<<"--------->"<<"\t"<<"show students of selected class"<<"\n\n";
+   cout<<"basu save"<<"\t\t\t"<<"--------->"<<"\t"<<"save classess in files"<<"\n\n";
+   cout<<"basu clear"<<"\t\t\t"<<"--------->"<<"\t"<<"clear system"<<"\n\n";
+   cout<<"basu rank"<<"\t\t\t"<<"--------->"<<"\t"<<"rank of students of selected class(A\\B\\C\\D\\E\\) "<<"\n\n";
+   cout<<"exit"<<"\t\t\t\t"<<"--------->"<<"\t"<<"for exit"<<"\n\n";
    
 }
 //-------------------------------------------------------------------------------------------------------
